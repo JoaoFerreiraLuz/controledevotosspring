@@ -13,9 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>controledevotosspring-api</name>
     <description>Api para gerenciamento de votacoes</description>
-    <properties>
-        <java.version>11</java.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
