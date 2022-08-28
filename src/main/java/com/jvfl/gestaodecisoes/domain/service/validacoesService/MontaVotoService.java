@@ -1,12 +1,10 @@
 package com.jvfl.gestaodecisoes.domain.service.validacoesService;
 
-import com.jvfl.gestaodecisoes.api.repository.SessaoRepository;
-import com.jvfl.gestaodecisoes.api.repository.VotoRepository;
 import com.jvfl.gestaodecisoes.domain.dto.VotarDto;
 import com.jvfl.gestaodecisoes.domain.model.Voto;
 import com.jvfl.gestaodecisoes.domain.service.AssociadoService;
 import com.jvfl.gestaodecisoes.domain.service.PautaService;
-import com.jvfl.gestaodecisoes.domain.service.Sessaoservice;
+import com.jvfl.gestaodecisoes.domain.service.SessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +18,7 @@ public class MontaVotoService {
     private PautaService pautaService;
 
     @Autowired
-    private Sessaoservice sessaoservice;
+    private SessaoService sessaoservice;
 
     public Voto montaVotoService(VotarDto votarDto){
         Voto voto = new Voto();

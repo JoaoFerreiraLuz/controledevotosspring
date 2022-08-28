@@ -10,13 +10,14 @@ import com.jvfl.gestaodecisoes.domain.model.Associacao;
 import com.jvfl.gestaodecisoes.domain.model.Associado;
 import com.jvfl.gestaodecisoes.domain.model.Pauta;
 import com.jvfl.gestaodecisoes.domain.model.Sessao;
+import com.jvfl.gestaodecisoes.domain.service.validacoesService.ValidaSessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Sessaoservice {
+public class SessaoService {
 
     @Autowired
     private SessaoRepository sessaoRepository;
@@ -26,6 +27,9 @@ public class Sessaoservice {
 
     @Autowired
     private PautaService pautaService;
+
+    @Autowired
+    private ValidaSessaoService validaSessaoService;
 
     public Sessao findOrFail(Integer sessaoId) {
         return sessaoRepository.findById(sessaoId)
@@ -38,14 +42,15 @@ public class Sessaoservice {
 
     public SessaoDto salvar(Sessao sessao) {
         try{
+            validaSessaoService.verificarValidacoes(sessao);
             Associacao associacao = associacaoService.findOrFail(sessao.getAssociacao().getId());
             Pauta pauta = pautaService.findOrFail(sessao.getPauta().getId());
-            if(sessao.getData_sessao() == null || associacao == null || pauta == null ){
+            if(sessao.getDataSessao() == null || associacao == null || pauta == null ){
                 throw new BusinessExcepton();
             }
         } catch (BusinessExcepton e){
             throw new BusinessExcepton(
-                    String.format(Constantes.REGRA_NEGOCIO_CONFILTANTE, Associado.class.getSimpleName(), "Nao foi possivel salvar o associado. Verifique os campos 'nome' e 'associacaoId'.")
+                    String.format(Constantes.REGRA_NEGOCIO_CONFILTANTE, Sessao.class.getSimpleName(), "Nao foi possivel salvar o associado. Verifique os campos 'nome' e 'associacaoId'.")
             );
         }
         return new SessaoDto(sessaoRepository.save(sessao));

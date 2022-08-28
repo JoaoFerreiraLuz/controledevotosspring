@@ -10,6 +10,7 @@ import com.jvfl.gestaodecisoes.domain.exception.EntidadeNaoEncontradaException;
 import com.jvfl.gestaodecisoes.domain.model.Associado;
 import com.jvfl.gestaodecisoes.domain.model.Voto;
 import com.jvfl.gestaodecisoes.domain.service.validacoesService.MontaVotoService;
+import com.jvfl.gestaodecisoes.domain.service.validacoesService.ValidaSessaoService;
 import com.jvfl.gestaodecisoes.domain.service.validacoesService.ValidaVotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,16 +29,25 @@ public class VotoService {
     @Autowired
     private ValidaVotoService validaVotoService;
 
+    @Autowired
+    private ValidaSessaoService validaSessaoService;
+
     public VotoDto salvar(VotarDto votarDto) {
         Voto voto = new Voto();
+        String mensagemErro = "";
         try{
             voto = montaVotoService.montaVotoService(votarDto);
             if(!validaVotoService.votoValido(voto)){
+                mensagemErro = "Eleitor nao esta apto a votar";
+                throw new BusinessExcepton();
+            }
+            if(!validaSessaoService.validaInicioETerminoSessao(voto.getSessao())){
+                mensagemErro = "Cessao encerrada, aguarde a proxima!";
                 throw new BusinessExcepton();
             }
         } catch (BusinessExcepton e){
             throw new BusinessExcepton(
-                    String.format(Constantes.REGRA_NEGOCIO_CONFILTANTE, Voto.class.getSimpleName(), "O Associado ja realizou seu voto.")
+                    String.format(Constantes.REGRA_NEGOCIO_CONFILTANTE, Voto.class.getSimpleName(), mensagemErro)
             );
         }
         return new VotoDto(votoRepository.save(voto));

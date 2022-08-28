@@ -17,17 +17,17 @@ public class SessaoDto implements Serializable {
     private Integer id;
     private AssociacaoDto associacao;
     private PautaDto pauta;
-    private Date data_sessao;
-    private Date inicio_sessao;
-    private Date termino_sessao;
+    private Date dataSessao;
+    private Date inicioSessao;
+    private Date terminoSessao;
 
     public SessaoDto(Sessao sessao) {
         this.id = sessao.getId();
         this.associacao = new AssociacaoDto(sessao.getAssociacao());
         this.pauta = new PautaDto(sessao.getPauta());
-        this.data_sessao = sessao.getData_sessao();
-        this.inicio_sessao = sessao.getInicio_sessao();
-        this.termino_sessao = sessao.getData_sessao();
+        this.dataSessao = sessao.getDataSessao();
+        this.inicioSessao = sessao.getInicioSessao();
+        this.terminoSessao = sessao.getDataSessao();
     }
 
     public List<SessaoDto> convertEntitytoDto(List<Sessao> sessoes){

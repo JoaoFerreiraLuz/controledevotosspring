@@ -25,11 +25,11 @@ public class Sessao {
     private Pauta pauta;
 
     @Column(name = "data_sessao", nullable = false, columnDefinition = "datetime")
-    private Date data_sessao;
+    private Date dataSessao;
 
     @Column(name = "inicio_sessao", nullable = false, columnDefinition = "datetime")
-    private Date inicio_sessao;
+    private Date inicioSessao;
 
     @Column(name = "termino_sessao", nullable = false, columnDefinition = "datetime")
-    private Date termino_sessao;
+    private Date terminoSessao;
 }

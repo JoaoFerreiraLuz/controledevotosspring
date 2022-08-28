@@ -8,5 +8,6 @@ public abstract class Constantes {
     public static final String APROVADO = "APROVADA";
     public static final String REPROVADA = "REPROVADA";
     public static final String EMPATE = "EMPATE";
-
+    public static final Integer DURACAO_SESSAO = 1;
+    public static final long ONE_MINUTE_IN_MILLIS = 60000;
 }
