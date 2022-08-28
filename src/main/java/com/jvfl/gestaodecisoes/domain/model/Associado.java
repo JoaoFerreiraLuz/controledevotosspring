@@ -13,8 +13,8 @@ public class Associado {
 
     @Id
     @EqualsAndHashCode.Include
-    @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 30)

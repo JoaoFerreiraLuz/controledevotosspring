@@ -13,8 +13,7 @@ public class Pauta {
 
     @Id
     @EqualsAndHashCode.Include
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "descricao", length = 30)
