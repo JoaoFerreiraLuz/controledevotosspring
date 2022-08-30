@@ -13,7 +13,6 @@ public class ValidaSessaoService {
         if (validaInicioETerminoSessao(sessao)) {
             ajustarDuracaoDaSessao(sessao);
         }
-        return;
     }
 
     private void ajustarDuracaoDaSessao(Sessao sessao) {
@@ -27,7 +26,6 @@ public class ValidaSessaoService {
         Date dataTermino = new Date(curTimeInMs +
                 (Constantes.DURACAO_SESSAO * Constantes.ONE_MINUTE_IN_MILLIS));
         sessao.setTerminoSessao(dataTermino);
-        return;
     }
 
     public Boolean validaInicioETerminoSessao(Sessao sessao) {
