@@ -30,7 +30,7 @@ public class VotarServive {
 
 
     public VotoDto salvar(Voto voto) {
-        try{
+        try {
 
             Associado associado = associadoService.findOrFail(voto.getAssociado().getId());
             Pauta pauta = pautaService.findOrFail(voto.getPauta().getId());
@@ -40,13 +40,13 @@ public class VotarServive {
             voto.setPauta(pauta);
             voto.setSessao(sessao);
 
-            if(!votoEstaNoPeriodoEletivel(sessao)){
+            if (!votoEstaNoPeriodoEletivel(sessao)) {
                 throw new BusinessExcepton("Voto esta fora do Periodo Valido!");
             }
-            if(voto.getFavoravel() == null){
+            if (voto.getFavoravel() == null) {
                 throw new BusinessExcepton("E necessario que informe seu parecer!");
             }
-        } catch (BusinessExcepton e){
+        } catch (BusinessExcepton e) {
             throw new BusinessExcepton(
                     String.format(Constantes.REGRA_NEGOCIO_CONFILTANTE, Voto.class.getSimpleName(), ".")
             );

@@ -21,7 +21,4 @@ public class PautaDto implements Serializable {
         this.descricao = pauta.getDescricao();
     }
 
-    public List<PautaDto> convertEntitytoDto(List<Pauta> pautas){
-        return pautas.stream().map(PautaDto::new).collect(Collectors.toList());
-    }
 }

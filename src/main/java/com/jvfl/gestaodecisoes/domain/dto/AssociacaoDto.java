@@ -21,7 +21,7 @@ public class AssociacaoDto implements Serializable {
         this.descricao = associacao.getDescricao();
     }
 
-    public List<AssociacaoDto> convertEntitytoDto(List<Associacao> associacaos){
+    public List<AssociacaoDto> convertEntitytoDto(List<Associacao> associacaos) {
         return associacaos.stream().map(AssociacaoDto::new).collect(Collectors.toList());
     }
 }

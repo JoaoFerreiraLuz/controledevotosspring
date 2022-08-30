@@ -20,7 +20,9 @@ public class VotoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void adicionar(@RequestBody VotarDto votarDto) {votoService.salvar(votarDto); }
+    public void votar(@RequestBody VotarDto votarDto) {
+        votoService.salvar(votarDto);
+    }
 
     @DeleteMapping("/{votoId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

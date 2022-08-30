@@ -27,7 +27,4 @@ public class VotoDto implements Serializable {
         this.sessao = new SessaoDto(voto.getSessao());
     }
 
-    public List<VotoDto> convertEntitytoDto(List<Voto> votos){
-        return votos.stream().map(VotoDto::new).collect(Collectors.toList());
-    }
 }

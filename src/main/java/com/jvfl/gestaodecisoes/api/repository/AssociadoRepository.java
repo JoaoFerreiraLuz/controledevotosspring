@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AssociadoRepository extends JpaRepository<Associado, Integer> {
-    List<Associado> findAssociadoByNome(String nome);
+    List<Associado> findAssociadoByNomeContaining(String nome);
+    Associado findAssociadoByCpfEquals(String nome);
 }

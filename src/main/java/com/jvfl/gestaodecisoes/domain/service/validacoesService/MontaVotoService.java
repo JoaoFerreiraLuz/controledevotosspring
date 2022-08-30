@@ -20,7 +20,7 @@ public class MontaVotoService {
     @Autowired
     private SessaoService sessaoservice;
 
-    public Voto montaVotoService(VotarDto votarDto){
+    public Voto montaVotoService(VotarDto votarDto) {
         Voto voto = new Voto();
         voto.setSessao(sessaoservice.findOrFail(votarDto.getSessao()));
         voto.setPauta(pautaService.findOrFail(votarDto.getPauta()));

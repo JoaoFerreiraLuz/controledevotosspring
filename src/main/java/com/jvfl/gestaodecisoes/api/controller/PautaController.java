@@ -24,17 +24,17 @@ public class PautaController {
 
     @GetMapping
     public List<PautaDto> listar(){
-        return (pautaRepository.findAll()).stream().map(PautaDto::new).collect(Collectors.toList());
+        return pautaRepository.findAll().stream().map(p -> pautaService.getDto(p)).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public PautaDto buscar(@PathVariable Integer id) {
-        return new PautaDto(pautaService.findOrFail(id));
+        return pautaService.getDto(pautaService.findOrFail(id));
     }
 
     @GetMapping("/por-descricao/{descricao}")
     public List<PautaDto> listar(@PathVariable String descricao){
-        return (pautaRepository.findPautaByDescricao(descricao)).stream().map(PautaDto::new).collect(Collectors.toList());
+        return pautaRepository.findPautaByDescricao(descricao).stream().map(p -> pautaService.getDto(p)).collect(Collectors.toList());
     }
 
     @GetMapping("/resultado-pauta/{pautaId}")
@@ -45,13 +45,6 @@ public class PautaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void adicionar(@RequestBody Pauta pauta) {pautaService.salvar(pauta); }
-
-//    @PutMapping("/{pautaId}") // Atualizacao total do objeto
-//    public PautaDto atualizar(@PathVariable Integer pautaId, @RequestBody Pauta pauta) {
-//        Pauta pautaAtual = pautaService.findOrFail(pautaId);
-//        BeanUtils.copyProperties(pauta, pautaAtual, "id");
-//        return new PautaDto(pautaService.salvar(pautaAtual));
-//    }
 
     @DeleteMapping("/{pautaId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

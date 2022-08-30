@@ -24,7 +24,7 @@ public class ResultadoPautaDto implements Serializable {
         this.resultado = verificaresultado(qtdVotosPositivos, qtdeVotosNegativos);
     }
 
-    public String verificaresultado(Long qtdVotosPositivos, Long qtdeVotosNegativos){
+    public String verificaresultado(Long qtdVotosPositivos, Long qtdeVotosNegativos) {
         return qtdVotosPositivos > qtdeVotosNegativos ? Constantes.APROVADO :
                 (qtdeVotosNegativos > qtdVotosPositivos ? Constantes.REPROVADA : Constantes.EMPATE);
     }

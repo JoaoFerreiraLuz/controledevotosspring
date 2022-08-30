@@ -4,6 +4,7 @@ import com.jvfl.gestaodecisoes.domain.model.Sessao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class SessaoDto implements Serializable {
         this.terminoSessao = sessao.getDataSessao();
     }
 
-    public List<SessaoDto> convertEntitytoDto(List<Sessao> sessoes){
+    public List<SessaoDto> convertEntitytoDto(List<Sessao> sessoes) {
         return sessoes.stream().map(SessaoDto::new).collect(Collectors.toList());
     }
 }
